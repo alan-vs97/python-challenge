@@ -15,7 +15,6 @@ total_profit = 0
 greatest_increase = {"Date" : "", "Profit" : 0}
 greatest_decrease = {"Date": "", "Loss": 0}
 
-
 with open(path_read, "r") as csv_file:
 
     data = csv.reader(csv_file)
@@ -23,7 +22,8 @@ with open(path_read, "r") as csv_file:
 
     # Each line in the csv contains the data for one month.
 
-    i = 0
+    # This variable indicates that we are on the first line
+    first = True
 
     for line in data:
 
@@ -32,9 +32,11 @@ with open(path_read, "r") as csv_file:
         profit = float(line[1])
 
         #Check if it is the first line, and if so, save the first profit listed
-        if i == 0:
+        if first:
             first_profit = profit
-            i += 1
+
+            # Change the variable to indicate we're no longer in the first line
+            first = False
 
         # Update number of months and total profit
         num_months += 1
